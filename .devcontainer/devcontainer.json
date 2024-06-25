@@ -1,9 +1,19 @@
 // Info https://containers.dev/implementors/json_reference/
 {
-//	name of the dev container
-	"name": "idea-demo",
-//	Or use a Dockerfile here, more info: https://containers.dev/guide/dockerfile
-	"image":  "vdisk/java8-devcontainers:7"
-
+    //	name of the dev container
+    "name": "idea-demo",
+    //	Or use a Dockerfile here, more info: https://containers.dev/guide/dockerfile
+    "image": "vdisk/java8-devcontainers:7",
+    "forwardPorts": [
+        8090
+    ],
+    "mounts": [
+        {
+            "type": "volume",
+            "source": "jb_devcontainers_shared_maven-repo",
+            "target": "/root/.m2"
+        }
+    ],
+    "postCreateCommand": "ls -lha /root/.m2"
 }
 
